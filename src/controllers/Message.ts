@@ -2,12 +2,11 @@ import { NextFunction, Request, Response } from 'express';
 import mongoose from 'mongoose';
 import Message from '../models/Message';
 
-const createMessage = (req: Request, res: Response, next: NextFunction) => {
-    const { content, author } = req.body;
-    
+const createMessage = (req: Request, res: Response, next: NextFunction) => {    
     const message = new Message({
         _id: new mongoose.Types.ObjectId(),
-        content, author
+        content: req.body.content, 
+        author: req.body.author || req.socket.remoteAddress
     });
 
     return message.save()

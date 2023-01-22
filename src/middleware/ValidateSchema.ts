@@ -18,11 +18,9 @@ export const ValidateSchema = (schema : ObjectSchema) => {
 export const Schemas = {
     message: {
         create: Joi.object<IMessage>({
-            author: Joi.string().required(),
             content: Joi.string().required()
         }),
         update: Joi.object<IMessage>({
-            author: Joi.string().required(),
             content: Joi.string().required()
         })
     }
