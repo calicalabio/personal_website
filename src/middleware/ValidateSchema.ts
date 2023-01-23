@@ -5,10 +5,12 @@ import { IMessage } from '../models/Message';
 
 export const ValidateSchema = (schema : ObjectSchema) => {
     return async (req: Request, res: Response, next: NextFunction) => {
-        try {
+        try {        
             await schema.validateAsync(req.body);
             next();
         } catch (error) {
+            //console.log("Request", req);
+            console.log("Request Body", req.body);
             Logging.error(error);
             return res.status(422).json({ error });
         }
